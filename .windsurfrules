@@ -1,0 +1,136 @@
+# Local.Windsurf Rules
+
+This document outlines essential rules and best practices for the local development environment of the bndy platform. These rules focus on IDE workflow, development practices, and local environment management to ensure consistency and efficiency.
+
+## Auth implmentation
+- **You're working on the BNDY authentication system. All work must follow FinalAuthImplementation.md. Do not introduce any deviation, abstraction, or tooling unless specifically required by that document or directly prompted by the user. Treat the implementation plan as law.**
+
+- **Use only the implementation steps described in FinalAuthImplementation.md** Do not invent workarounds, add middleware, or introduce external dependencies. If a problem arises, stop and describe the issue without bypassing the plan. Prompt for user decision.
+- **Refer back to the implementation phase before making code changes**. List the current phase, the current task, and any completed ones before proceeding.
+- **Avoid over-abstraction**. Don’t split into multiple files unless required by the plan or unless components are larger than 200-300 LOC. Don’t wrap Firebase functions in generic service layers unless the plan calls for it. Keep things simple and testable.
+
+
+## Server Management
+
+ - **Always run a full TSC** in the codebase changes have been made in before suggesting work is complete / issues are fixed.
+- **Always start a new server after making changes** to ensure they take effect properly
+- **Always kill all existing related servers** that may have been created in previous testing before trying to start a new server
+- **Use consistent ports** for each application to avoid conflicts (e.g., 3000 for landing, 3001 for live, 3002 for core)
+- **Check terminal output for errors** immediately after starting servers
+- **Use nodemon or similar tools** for automatic server restarts during development
+- **Always give terminal commands in PowerShell syntax**
+
+## Code Development
+
+- **Always look for existing code to iterate on** instead of creating new code
+- **Do not drastically change the patterns** before trying to iterate on existing patterns
+- **Focus on the areas of code relevant to the task**
+- **Do not touch code that is unrelated to the task**
+- **Be careful to only make changes that are requested** or you are confident are well understood
+- **When fixing an issue or bug, do not introduce a new pattern or technology** without first exhausting all options for the existing implementation
+- **If you introduce a new pattern, remove the old implementation** afterwards so we don't have duplicate logic
+- **Always refer to the STYLEGUIDE.MS when creating or modifying and UI elements**
+
+## Code Quality
+
+- **Keep the codebase very clean and organized**
+- **Avoid writing scripts in files if possible**, especially if the script is likely only to be run once
+- **Avoid having files over 200-300 lines of code**. Refactor at that point
+- **Write thorough tests for all major functionality**
+- **Use consistent formatting** with Prettier or ESLint
+- **Run linters before committing code**
+
+## Local Data Management
+
+- **Mocking data is only needed for tests**, never mock data for dev or prod
+- **Never add stubbing or fake data patterns** to code that affects the dev or prod environments
+- **Use the Firebase emulator** for local development when possible
+- **Seed local databases consistently** across the team
+- **Never overwrite my .env file without first asking and confirming**
+
+## IDE Setup Recommendations
+
+- **Use VS Code** with consistent extensions across the team:
+  - ESLint
+  - Prettier
+  - TypeScript support
+  - Firebase extension
+  - React Developer Tools
+  - Jest Runner
+- **Share and standardize workspace settings** in the repository (.vscode/settings.json)
+- **Configure auto-formatting on save** for consistent code style
+- **Use debugging configurations** in launch.json for efficient troubleshooting
+- **Enable TypeScript error checking** in the editor
+- **Configure terminal integration** within the IDE for server management
+
+## Environment Configuration
+
+- **Maintain separate .env files** for different environments (.env.development, .env.test)
+- **Document required environment variables** in a .env.example file
+- **Keep sensitive values out of source control**
+- **Use consistent naming conventions** for environment variables
+- **Validate required environment variables** on application startup
+- **Configure proper CORS settings** for local development
+
+## Cross-Application Development
+
+- **Run required dependent services locally** when working on inter-connected features
+- **Use consistent local URLs** for service communication
+- **Test cross-app authentication flows** regularly during development
+- **Use linked local packages** when developing shared components (e.g., npm link for bndy.ui)
+
+## Local Performance Considerations
+
+- **Disable unnecessary logging** in development to improve console readability
+- **Use React DevTools profiler** to identify performance issues early
+- **Implement lazy loading** for components not immediately visible
+- **Be mindful of Firebase read/write operations** even in development
+- **Use caching strategies** that can be tested locally
+
+## Version Control for Local Development
+
+- **Work in feature branches** for all development work
+- **Make atomic, focused commits** with clear messages
+- **Pull changes from main branch regularly** to avoid drift
+- **Resolve merge conflicts locally** before pushing
+- **Use git hooks** for pre-commit linting and testing
+
+## Testing in Local Environment
+
+- **Run tests locally before committing**
+- **Use watch mode for tests** during active development
+- **Maintain test database separation** from development data
+- **Test mobile views using responsive design mode or device emulation**
+- **Test both light and dark themes** in local development
+
+## Local Build Optimization
+
+- **Use the development build for local work** - never production build unless testing production issues
+- **Monitor bundle size locally** using tools like webpack-bundle-analyzer
+- **Configure source maps properly** for debugging
+- **Implement fast refresh / hot reloading** for productivity
+- **Consider implementing module/path aliases** for cleaner imports
+
+## Local Security Practices
+
+- **Never use production credentials in local development**
+- **Set appropriate local Firebase security rules** that match production
+- **Test authentication flows with test accounts only**
+- **Don't store sensitive user data in local development databases**
+
+1. **Single Auth Context Rule:**  
+   Only use the AuthProvider and useAuth exported from `bndy-ui/components/auth`. Never define or use a local AuthContext, AuthProvider, or useAuth in any consuming app.
+
+2. **No Local Auth Logic:**  
+   Do not duplicate authentication state, token decoding, or user state logic in the app. All such logic must reside in the shared bndy-ui context.
+
+3. **Token Handling:**  
+   The only place the JWT token should be read and processed is inside bndy-ui's AuthProvider. Apps must not manually decode or process the token.
+
+4. **Documentation:**  
+   Any new project or feature that requires authentication must reference and follow the documented Auth Flow in `AUTH_FLOW.md`.
+
+5. **Code Review:**  
+   Code reviewers must reject any PR that introduces a local AuthContext, AuthProvider, or useAuth, or that duplicates authentication logic.
+
+Remember: Local development should prioritize developer productivity while maintaining practices that translate well to production environments.
