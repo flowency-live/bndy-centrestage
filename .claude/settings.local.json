@@ -12,7 +12,8 @@
       "Bash(findstr:*)",
       "Bash(taskkill:*)",
       "Bash(del C:VSProjectsbndy-centrestagetailwind.config.js)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit:*)"
     ],
     "deny": [],
     "ask": []

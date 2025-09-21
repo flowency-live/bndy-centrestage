@@ -27,7 +27,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
         setIsDarkMode(true);
         document.documentElement.classList.add('dark');
       }
-    } catch (error) {
+    } catch {
       // Fallback if localStorage is not available
       setIsDarkMode(true);
       document.documentElement.classList.add('dark');
@@ -48,7 +48,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
         document.documentElement.classList.remove('dark');
         localStorage.setItem('theme', 'light');
       }
-    } catch (error) {
+    } catch {
       // Fallback if localStorage is not available
       if (newMode) {
         document.documentElement.classList.add('dark');
