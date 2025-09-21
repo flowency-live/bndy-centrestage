@@ -11,7 +11,7 @@ const nextConfig = {
     ],
   },
   experimental: {
-    serverActions: true,
+    serverActions: {},
   },
   // No custom Next.js config needed for the single domain approach
   // Port is configured in server.mjs

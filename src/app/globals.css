@@ -1,19 +1,8 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-  --bndy-orange: #f97316;
-  --bndy-orange-hover: #ea580c;
-  --bndy-dark-blue: #1e293b;
-  --bndy-darker-blue: #0f172a;
-  --bndy-light-gray: #f1f5f9;
-  --bndy-text-white: #f8fafc;
-  --bndy-text-gray: #94a3b8;
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  min-height: 100vh;
+@theme {
+  --color-orange-500: #f97316;
+  --color-orange-600: #ea580c;
+  --color-cyan-500: #06b6d4;
+  --color-cyan-600: #0891b2;
 }

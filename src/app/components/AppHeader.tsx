@@ -3,99 +3,64 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { BndyLogo, useAuth } from 'bndy-ui';
-import { Menu, X, User, LogIn, LogOut } from 'lucide-react';
-import { useRouter } from 'next/navigation';
+import BndyLogo from './BndyLogo';
+import { Menu, X } from 'lucide-react';
 
 export function AppHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const { currentUser, signOut, isLoading } = useAuth();
-  const router = useRouter();
-  
-  const handleSignOut = async () => {
-    try {
-      await signOut();
-      router.push('/');
-    } catch (error) {
-      console.error('Sign out error:', error);
-    }
-  };
 
   return (
-    <header className="sticky top-0 z-50 bg-white shadow-sm">
+    <header className="sticky top-0 z-50 bg-slate-900 shadow-lg border-b border-slate-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex items-center">
             <Link href="/" className="flex-shrink-0 flex items-center">
-              <BndyLogo className="h-8 w-auto" color="#f97316" holeColor='#ffffff' />
+              <BndyLogo
+                className="h-8 w-auto"
+                color="#f97316"
+                holeColor='#0f172a'
+              />
             </Link>
           </div>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-1">
-            <Link 
-              href="/" 
-              className="px-3 py-2 rounded-md text-sm font-medium text-slate-700 hover:text-orange-500"
+            <Link
+              href="/"
+              className="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-orange-500 transition-colors"
             >
               Home
             </Link>
-            <Link 
-              href="https://bndy.live" 
-              className="px-3 py-2 rounded-md text-sm font-medium text-slate-700 hover:text-orange-500"
+            <a
+              href="https://bndy.live"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-cyan-500 transition-colors"
             >
-              Discover
-            </Link>
-            <Link 
-              href="https://backstage.bndy.co.uk" 
-              className="px-3 py-2 rounded-md text-sm font-medium text-slate-700 hover:text-orange-500"
+              Discover Events
+            </a>
+            <a
+              href="https://backstage.bndy.co.uk"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-cyan-500 transition-colors"
             >
-              Manage
-            </Link>
-            <Link 
-              href="/about" 
-              className="px-3 py-2 rounded-md text-sm font-medium text-slate-700 hover:text-orange-500"
+              Manage Music
+            </a>
+            <Link
+              href="/about"
+              className="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-orange-500 transition-colors"
             >
               About
             </Link>
-
-            <div className="flex items-center space-x-3">
-              {currentUser ? (
-                <>
-                  <Link 
-                    href="/account" 
-                    className="flex items-center px-3 py-2 rounded-md text-sm font-medium text-slate-700 hover:text-orange-500"
-                  >
-                    <User size={18} className="mr-1" />
-                    Account
-                  </Link>
-                  <button
-                    onClick={handleSignOut}
-                    className="flex items-center px-3 py-2 rounded-md text-sm font-medium text-white bg-orange-500 hover:bg-orange-600 transition-colors"
-                    disabled={isLoading}
-                  >
-                    <LogOut size={18} className="mr-1" />
-                    Sign Out
-                    {isLoading && <span className="ml-1">...</span>}
-                  </button>
-                </>
-              ) : (
-                <Link 
-                  href="/login" 
-                  className="flex items-center px-3 py-2 rounded-md text-sm font-medium text-white bg-orange-500 hover:bg-orange-600 transition-colors"
-                >
-                  <LogIn size={18} className="mr-1" />
-                  Sign In
-                </Link>
-              )}
-            </div>
           </nav>
 
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="p-2 rounded-md text-slate-500 hover:text-slate-700"
+              className="p-2 rounded-md text-gray-300 hover:text-orange-500 hover:bg-slate-800 transition-colors"
               aria-label="Toggle menu"
             >
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -107,74 +72,39 @@ export function AppHeader() {
       {/* Mobile menu, show/hide based on menu state */}
       {isMenuOpen && (
         <div className="md:hidden">
-          <div className="pt-2 pb-3 space-y-1 px-4 sm:px-6 lg:px-8 border-t border-slate-200">
-            <Link 
-              href="/" 
-              className="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-orange-500"
+          <div className="pt-2 pb-3 space-y-1 px-4 sm:px-6 lg:px-8 border-t border-slate-800 bg-slate-900">
+            <Link
+              href="/"
+              className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-orange-500 transition-colors"
               onClick={() => setIsMenuOpen(false)}
             >
               Home
             </Link>
-            <Link 
-              href="https://bndy.live" 
-              className="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-orange-500"
+            <a
+              href="https://bndy.live"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-cyan-500 transition-colors"
               onClick={() => setIsMenuOpen(false)}
             >
-              Discover
-            </Link>
-            <Link 
-              href="https://backstage.bndy.co.uk" 
-              className="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-orange-500"
+              Discover Events
+            </a>
+            <a
+              href="https://backstage.bndy.co.uk"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-cyan-500 transition-colors"
               onClick={() => setIsMenuOpen(false)}
             >
-              Manage
-            </Link>
-            <Link 
-              href="/about" 
-              className="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-orange-500"
+              Manage Music
+            </a>
+            <Link
+              href="/about"
+              className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-orange-500 transition-colors"
               onClick={() => setIsMenuOpen(false)}
             >
               About
             </Link>
-            
-            {/* Authentication links */}
-            {currentUser ? (
-              <>
-                <Link 
-                  href="/account" 
-                  className="flex items-center px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-orange-500"
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  <User size={18} className="mr-2" />
-                  My Account
-                </Link>
-                <button
-                  onClick={() => {
-                    setIsMenuOpen(false);
-                    handleSignOut();
-                  }}
-                  className="flex items-center w-full text-left px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-orange-500"
-                  disabled={isLoading}
-                >
-                  <LogOut size={18} className="mr-2" />
-                  Sign Out
-                  {isLoading && <span className="ml-1">...</span>}
-                </button>
-              </>
-            ) : (
-              <Link 
-                href="/login" 
-                className="flex items-center px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-orange-500"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                <LogIn size={18} className="mr-2" />
-                Sign In
-              </Link>
-            )}
-
-            <div className="w-full mt-2 flex items-center justify-center px-3 py-2 rounded-md text-base font-medium text-white bg-orange-500 hover:bg-orange-600">
-              Menu
-            </div>
           </div>
         </div>
       )}

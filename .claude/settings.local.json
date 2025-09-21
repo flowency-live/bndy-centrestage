@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/VSProjects/bndy-ui/src/components/logos/**)",
+      "Read(//c/VSProjects/bndy-ui/src/components/footers/**)",
+      "Read(//c/VSProjects/bndy-ui/src/components/socials/**)",
+      "Read(//c/VSProjects/bndy-ui/src/components/icons/**)",
+      "Bash(dir:*)",
+      "Bash(npm run dev:*)",
+      "Bash(npm run build:*)",
+      "Bash(netstat:*)",
+      "Bash(findstr:*)",
+      "Bash(taskkill:*)",
+      "Bash(del C:VSProjectsbndy-centrestagetailwind.config.js)",
+      "Bash(git add:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
