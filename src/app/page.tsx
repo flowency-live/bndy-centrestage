@@ -22,7 +22,7 @@ export default function Home() {
               <BndyLogo
                 className="mx-auto w-48 md:w-64"
                 color="#f97316"
-                holeColor="#1e293b"
+                holeColor="#0f172a"
               />
             </div>
 
