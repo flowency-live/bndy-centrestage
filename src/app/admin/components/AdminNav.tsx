@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { MapPin, User, Music, BarChart3 } from 'lucide-react';
+import { User, Music, BarChart3 } from 'lucide-react';
 
 export function AdminNav() {
   const pathname = usePathname();

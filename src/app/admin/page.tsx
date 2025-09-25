@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { MapPin, ExternalLink, CheckCircle, AlertCircle, RefreshCw, Edit, Trash2, Save, X, User, Music, BarChart3 } from 'lucide-react';
+import { MapPin, ExternalLink, CheckCircle, AlertCircle, RefreshCw, Edit, Trash2, Save, X, User, Music } from 'lucide-react';
 import Link from 'next/link';
 import { AdminNav } from './components/AdminNav';
 
