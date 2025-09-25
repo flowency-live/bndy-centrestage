@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { User, Music, BarChart3 } from 'lucide-react';
+import { User, Music, BarChart3, MapPin } from 'lucide-react';
 
 export function AdminNav() {
   const pathname = usePathname();
@@ -9,6 +9,7 @@ export function AdminNav() {
     { href: '/admin', label: 'Dashboard', icon: BarChart3 },
     { href: '/admin/artists', label: 'Artists', icon: User },
     { href: '/admin/songs', label: 'Songs', icon: Music },
+    { href: '/admin/venues', label: 'Venues', icon: MapPin },
   ];
 
   return (
