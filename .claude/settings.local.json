@@ -25,7 +25,21 @@
       "Read(//c/VSProjects/**)",
       "Bash(git init:*)",
       "Bash(git remote add:*)",
-      "Bash(git branch:*)"
+      "Bash(git branch:*)",
+      "Bash(aws apprunner list-services:*)",
+      "Bash(aws apprunner describe-service:*)",
+      "Bash(aws apprunner start-deployment:*)",
+      "Bash(aws ssm get-parameter:*)",
+      "Bash(aws ssm describe-parameters:*)",
+      "Bash(aws rds:*)",
+      "Bash(aws secretsmanager get-secret-value:*)",
+      "WebFetch(domain:gq3zkcz2iu.eu-west-2.awsapprunner.com)",
+      "WebFetch(domain:4kxjn4gjqj.eu-west-2.awsapprunner.com)",
+      "Bash(aws ec2 describe-security-groups:*)",
+      "Bash(aws ec2 authorize-security-group-ingress:*)",
+      "Bash(node:*)",
+      "Bash(npm install:*)",
+      "Bash(pkill:*)"
     ],
     "deny": [],
     "ask": []

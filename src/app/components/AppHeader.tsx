@@ -49,6 +49,18 @@ export function AppHeader() {
               Manage Music
             </a>
             <Link
+              href="/admin"
+              className="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-purple-500 transition-colors"
+            >
+              Venue Admin
+            </Link>
+            <Link
+              href="/test-map"
+              className="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-green-500 transition-colors"
+            >
+              Map Test
+            </Link>
+            <Link
               href="/about"
               className="px-3 py-2 rounded-md text-sm font-medium text-gray-300 hover:text-orange-500 transition-colors"
             >
@@ -98,6 +110,20 @@ export function AppHeader() {
             >
               Manage Music
             </a>
+            <Link
+              href="/admin"
+              className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-purple-500 transition-colors"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Venue Admin
+            </Link>
+            <Link
+              href="/test-map"
+              className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-green-500 transition-colors"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Map Test
+            </Link>
             <Link
               href="/about"
               className="block px-3 py-2 rounded-md text-base font-medium text-gray-300 hover:text-orange-500 transition-colors"
