@@ -4,23 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { User, CheckCircle, AlertCircle, RefreshCw, Edit, Trash2, Save, X, Music } from 'lucide-react';
 import Link from 'next/link';
 import { AdminNav } from '../components/AdminNav';
-
-interface Artist {
-  id: string;
-  name: string;
-  bio: string;
-  location: string;
-  genres: string[];
-  facebookUrl: string;
-  instagramUrl: string;
-  websiteUrl: string;
-  socialMediaUrls: Array<{ platform: string; url: string }>;
-  profileImageUrl: string;
-  isVerified: boolean;
-  followerCount: number;
-  claimedByUserId: string | null;
-  createdAt: string;
-}
+import { getAllArtists, updateArtist, deleteArtist, type Artist } from '../../../lib/services/admin-service';
 
 export default function ArtistsAdmin() {
   const [artists, setArtists] = useState<Artist[]>([]);
@@ -36,11 +20,7 @@ export default function ArtistsAdmin() {
     setLoading(true);
     setError(null);
     try {
-      const response = await fetch('/api/artists');
-      if (!response.ok) {
-        throw new Error(`Failed to fetch artists: ${response.status}`);
-      }
-      const data = await response.json();
+      const data = await getAllArtists();
       setArtists(data);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Unknown error');
@@ -63,14 +43,13 @@ export default function ArtistsAdmin() {
     if (!editForm) return;
 
     try {
-      // This would call a PUT endpoint when implemented
-      console.log('Saving artist:', editForm);
-      // For now, just update locally
-      setArtists(artists.map(a => a.id === editForm.id ? editForm : a));
+      const updatedArtist = await updateArtist(editForm.id, editForm);
+      setArtists(artists.map(a => a.id === editForm.id ? updatedArtist : a));
       setEditingArtist(null);
       setEditForm(null);
     } catch (err) {
       console.error('Failed to save artist:', err);
+      setError(err instanceof Error ? err.message : 'Failed to save artist');
     }
   };
 
@@ -79,12 +58,11 @@ export default function ArtistsAdmin() {
 
     setDeleting(artistId);
     try {
-      // This would call a DELETE endpoint when implemented
-      console.log('Deleting artist:', artistId);
-      // For now, just remove locally
+      await deleteArtist(artistId);
       setArtists(artists.filter(a => a.id !== artistId));
     } catch (err) {
       console.error('Failed to delete artist:', err);
+      setError(err instanceof Error ? err.message : 'Failed to delete artist');
     } finally {
       setDeleting(null);
     }

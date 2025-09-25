@@ -31,7 +31,7 @@ export default function AdminDashboard() {
     setLoading(true);
     setError(null);
     try {
-      const response = await fetch('/api/venues');
+      const response = await fetch('https://icjzboi3c7.execute-api.eu-west-2.amazonaws.com/prod/api/venues');
       if (!response.ok) {
         throw new Error(`Failed to fetch venues: ${response.status}`);
       }

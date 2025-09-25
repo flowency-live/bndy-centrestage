@@ -4,23 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { Music, CheckCircle, AlertCircle, RefreshCw, Edit, Trash2, Save, X, Clock } from 'lucide-react';
 import Link from 'next/link';
 import { AdminNav } from '../components/AdminNav';
-
-interface Song {
-  id: string;
-  title: string;
-  artistName: string;
-  duration: number | null;
-  genre: string;
-  releaseDate: string | null;
-  album: string | null;
-  spotifyUrl: string;
-  appleMusicUrl: string;
-  youtubeUrl: string;
-  audioFileUrl: string;
-  isFeatured: boolean;
-  tags: string[];
-  createdAt: string;
-}
+import { getAllSongs, updateSong, deleteSong, formatDuration, type Song } from '../../../lib/services/admin-service';
 
 export default function SongsAdmin() {
   const [songs, setSongs] = useState<Song[]>([]);
@@ -36,11 +20,7 @@ export default function SongsAdmin() {
     setLoading(true);
     setError(null);
     try {
-      const response = await fetch('/api/songs');
-      if (!response.ok) {
-        throw new Error(`Failed to fetch songs: ${response.status}`);
-      }
-      const data = await response.json();
+      const data = await getAllSongs();
       setSongs(data);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Unknown error');
@@ -63,14 +43,13 @@ export default function SongsAdmin() {
     if (!editForm) return;
 
     try {
-      // This would call a PUT endpoint when implemented
-      console.log('Saving song:', editForm);
-      // For now, just update locally
-      setSongs(songs.map(s => s.id === editForm.id ? editForm : s));
+      const updatedSong = await updateSong(editForm.id, editForm);
+      setSongs(songs.map(s => s.id === editForm.id ? updatedSong : s));
       setEditingSong(null);
       setEditForm(null);
     } catch (err) {
       console.error('Failed to save song:', err);
+      setError(err instanceof Error ? err.message : 'Failed to save song');
     }
   };
 
@@ -79,23 +58,16 @@ export default function SongsAdmin() {
 
     setDeleting(songId);
     try {
-      // This would call a DELETE endpoint when implemented
-      console.log('Deleting song:', songId);
-      // For now, just remove locally
+      await deleteSong(songId);
       setSongs(songs.filter(s => s.id !== songId));
     } catch (err) {
       console.error('Failed to delete song:', err);
+      setError(err instanceof Error ? err.message : 'Failed to delete song');
     } finally {
       setDeleting(null);
     }
   };
 
-  const formatDuration = (seconds: number | null) => {
-    if (!seconds) return 'Unknown';
-    const mins = Math.floor(seconds / 60);
-    const secs = seconds % 60;
-    return `${mins}:${secs.toString().padStart(2, '0')}`;
-  };
 
   useEffect(() => {
     fetchSongs();
