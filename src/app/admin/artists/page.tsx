@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { User, CheckCircle, AlertCircle, RefreshCw, Edit, Trash2, Save, X, Music } from 'lucide-react';
+import { User, CheckCircle, AlertCircle, RefreshCw, Edit, Trash2, Save, X } from 'lucide-react';
 import Link from 'next/link';
 import { AdminNav } from '../components/AdminNav';
 import { getAllArtists, updateArtist, deleteArtist, type Artist } from '../../../lib/services/admin-service';
@@ -444,13 +444,6 @@ export default function ArtistsAdmin() {
                             >
                               <Trash2 className="w-4 h-4" />
                             </button>
-                            <Link
-                              href={`/admin/artists/${artist.id}/songs`}
-                              className="p-1 bg-purple-500 hover:bg-purple-600 rounded transition-colors"
-                              title="View artist's songs"
-                            >
-                              <Music className="w-4 h-4" />
-                            </Link>
                           </>
                         )}
                       </div>
