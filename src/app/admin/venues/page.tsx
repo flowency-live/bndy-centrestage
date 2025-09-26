@@ -75,7 +75,7 @@ export default function VenuesAdmin() {
   const filteredVenues = venues.filter(venue => {
     const matchesSearch = venue.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          venue.address.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         venue.postcode.toLowerCase().includes(searchTerm.toLowerCase());
+                         (venue.postcode && venue.postcode.toLowerCase().includes(searchTerm.toLowerCase()));
 
     if (!matchesSearch) return false;
 
