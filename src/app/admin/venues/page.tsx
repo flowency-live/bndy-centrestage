@@ -365,7 +365,7 @@ export default function VenuesAdmin() {
                         <div>
                           <div className="text-gray-300 text-sm">{venue.address}</div>
                           {venue.postcode && <div className="text-gray-400 text-sm">{venue.postcode}</div>}
-                          {venue.latitude !== 0 && venue.longitude !== 0 && (
+                          {venue.latitude && venue.longitude && venue.latitude !== 0 && venue.longitude !== 0 && (
                             <div className="text-gray-500 text-xs">
                               {venue.latitude.toFixed(4)}, {venue.longitude.toFixed(4)}
                             </div>
