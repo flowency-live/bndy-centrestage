@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { MapPin, ExternalLink, CheckCircle, AlertCircle, RefreshCw, Edit, Trash2, Save, X, User, Music } from 'lucide-react';
 import Link from 'next/link';
 import { AdminNav } from './components/AdminNav';
+import { getAllVenues } from '@/lib/services/admin-service';
 
 interface Venue {
   id: string;
@@ -31,11 +32,7 @@ export default function AdminDashboard() {
     setLoading(true);
     setError(null);
     try {
-      const response = await fetch('https://icjzboi3c7.execute-api.eu-west-2.amazonaws.com/prod/api/venues');
-      if (!response.ok) {
-        throw new Error(`Failed to fetch venues: ${response.status}`);
-      }
-      const data = await response.json();
+      const data = await getAllVenues();
       setVenues(data);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Unknown error');
