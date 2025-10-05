@@ -16,7 +16,7 @@ interface Venue {
   };
   googlePlaceId?: string;
   validated: boolean;
-  profileImageUrl?: string;
+  profileImageUrl?: string | null;
 }
 
 export default function AdminDashboard() {
