@@ -1,7 +1,5 @@
 // Admin Service - BNDY Centrestage API Integration
-// Follows the venue-service.ts pattern but uses relative API calls for admin operations
-
-import { API_BASE_URL } from '../config/api';
+// Uses relative API calls via Amplify proxy to eliminate CORS
 
 export interface Artist {
   id: string;
@@ -64,7 +62,7 @@ export interface Venue {
 // Artist Operations
 export async function getAllArtists(): Promise<Artist[]> {
   try {
-    const response = await fetch(`${API_BASE_URL}/api/artists`);
+    const response = await fetch('/api/artists');
     if (!response.ok) {
       throw new Error(`Failed to fetch artists: ${response.status}`);
     }
@@ -79,7 +77,7 @@ export async function getArtistById(artistId: string): Promise<Artist | null> {
   if (!artistId) return null;
 
   try {
-    const response = await fetch(`${API_BASE_URL}/api/artists/${artistId}`);
+    const response = await fetch(`/api/artists/${artistId}`);
     if (!response.ok) {
       if (response.status === 404) {
         return null;
@@ -153,7 +151,7 @@ export async function deleteArtist(artistId: string): Promise<void> {
 // Song Operations
 export async function getAllSongs(): Promise<Song[]> {
   try {
-    const response = await fetch(`${API_BASE_URL}/api/songs`);
+    const response = await fetch('/api/songs');
     if (!response.ok) {
       throw new Error(`Failed to fetch songs: ${response.status}`);
     }
@@ -168,7 +166,7 @@ export async function getSongById(songId: string): Promise<Song | null> {
   if (!songId) return null;
 
   try {
-    const response = await fetch(`${API_BASE_URL}/api/songs/${songId}`);
+    const response = await fetch(`/api/songs/${songId}`);
     if (!response.ok) {
       if (response.status === 404) {
         return null;
@@ -242,7 +240,7 @@ export async function deleteSong(songId: string): Promise<void> {
 // Venue Operations
 export async function getAllVenues(): Promise<Venue[]> {
   try {
-    const response = await fetch(`${API_BASE_URL}/api/venues`);
+    const response = await fetch('/api/venues');
     if (!response.ok) {
       throw new Error(`Failed to fetch venues: ${response.status}`);
     }
@@ -257,7 +255,7 @@ export async function getVenueById(venueId: string): Promise<Venue | null> {
   if (!venueId) return null;
 
   try {
-    const response = await fetch(`${API_BASE_URL}/api/venues/${venueId}`);
+    const response = await fetch(`/api/venues/${venueId}`);
     if (!response.ok) {
       if (response.status === 404) {
         return null;
