@@ -17,14 +17,14 @@ export default function Home() {
             <div
               className="absolute inset-0 opacity-20 bg-contain bg-no-repeat bg-top md:hidden"
               style={{
-                backgroundImage: 'url(/assets/images/bndy_landing_banner_mobile.png)',
+                backgroundImage: 'url(/assets/images/bndy_landing_banner_mobile.jpg)',
               }}
             />
             {/* Desktop background */}
             <div
               className="absolute inset-0 opacity-20 bg-cover bg-[center_30%] hidden md:block"
               style={{
-                backgroundImage: 'url(/assets/images/bndy_landing_banner.png)',
+                backgroundImage: 'url(/assets/images/bndy_landing_banner.jpg)',
               }}
             />
             {/* Gradient fade from transparent to solid */}
