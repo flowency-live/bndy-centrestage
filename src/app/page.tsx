@@ -9,29 +9,57 @@ export default function Home() {
   return (
     <ThemeProvider>
       <main className="min-h-screen flex flex-col bg-slate-900">
-        <AppHeader />
+        {/* Hero + What We Offer - Combined section with background */}
+        <div className="relative bg-slate-900">
+          {/* Background Image with gradient fade */}
+          <div className="absolute inset-0 overflow-hidden">
+            {/* Mobile background */}
+            <div
+              className="absolute inset-0 opacity-20 bg-contain bg-no-repeat bg-top md:hidden"
+              style={{
+                backgroundImage: 'url(/assets/images/bndy_landing_banner_mobile.png)',
+              }}
+            />
+            {/* Desktop background */}
+            <div
+              className="absolute inset-0 opacity-20 bg-cover bg-[center_30%] hidden md:block"
+              style={{
+                backgroundImage: 'url(/assets/images/bndy_landing_banner.png)',
+              }}
+            />
+            {/* Gradient fade from transparent to solid */}
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-slate-900" />
+          </div>
 
-        {/* Hero Section */}
-        <section className="pt-16 pb-16 px-4 bg-slate-900 text-white">
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="w-20 h-20 rounded-full mx-auto mb-8 flex items-center justify-center bg-orange-500">
-              <span className="text-white text-2xl font-bold">♪♪</span>
-            </div>
+          <AppHeader />
 
+          {/* Hero Section */}
+          <section className="relative pt-16 pb-16 px-4 text-white z-10">
+            <div className="max-w-4xl mx-auto text-center">
             <div className="mx-auto mb-8">
               <BndyLogo
                 className="mx-auto w-48 md:w-64"
                 color="#f97316"
-                holeColor="#0f172a"
               />
             </div>
 
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+            {/* Desktop: Single line */}
+            <h1 className="hidden md:block text-4xl md:text-5xl font-bold mb-6 leading-tight md:whitespace-nowrap">
               <span className="text-white">Keeping </span>
               <span className="text-cyan-500">LIVE</span>
               <span className="text-white"> Music </span>
               <span className="text-orange-500">ALIVE</span>
             </h1>
+
+            {/* Mobile: Grid layout with left/right alignment */}
+            <div className="block md:hidden font-bold mb-6 text-3xl leading-tight">
+              <div className="grid grid-cols-[max-content_max-content] gap-x-2 justify-center items-center">
+                <span className="text-white text-left">Keeping</span>
+                <span className="text-cyan-500 text-right">LIVE</span>
+                <span className="text-white text-left">Music</span>
+                <span className="text-orange-500 text-right">ALIVE</span>
+              </div>
+            </div>
 
             <p className="text-xl text-gray-300 max-w-3xl mx-auto mb-8">
               A community-driven platform connecting people to grassroots live music events.
@@ -40,9 +68,9 @@ export default function Home() {
           </div>
         </section>
 
-        {/* What We Offer Section */}
-        <section className="py-16 px-4 bg-slate-900">
-          <div className="max-w-6xl mx-auto">
+          {/* What We Offer Section */}
+          <section className="relative py-16 px-4 z-10">
+            <div className="max-w-6xl mx-auto">
             <h2 className="text-3xl font-bold text-center mb-12 text-white">
               What We Offer
             </h2>
@@ -127,7 +155,8 @@ export default function Home() {
               </div>
             </div>
           </div>
-        </section>
+          </section>
+        </div>
 
         {/* Community Section */}
         <section className="py-16 px-4 bg-slate-900">
