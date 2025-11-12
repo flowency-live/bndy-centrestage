@@ -10,7 +10,7 @@ export function AppHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 bg-slate-900 shadow-lg border-b border-slate-800">
+    <header className="sticky top-0 z-50 bg-slate-900/80 backdrop-blur-sm shadow-lg border-b border-slate-800/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
