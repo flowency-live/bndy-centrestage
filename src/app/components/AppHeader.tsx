@@ -19,7 +19,6 @@ export function AppHeader() {
               <BndyLogo
                 className="h-8 w-auto"
                 color="#f97316"
-                holeColor='#0f172a'
               />
             </Link>
           </div>
