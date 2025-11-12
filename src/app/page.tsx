@@ -9,10 +9,8 @@ export default function Home() {
   return (
     <ThemeProvider>
       <main className="min-h-screen flex flex-col bg-slate-900">
-        {/* Hero + What We Offer - Combined section with background */}
-        <div className="relative bg-slate-900">
-          {/* Background Image with gradient fade */}
-          <div className="absolute inset-0 overflow-hidden">
+        {/* Background Image with gradient fade - covers entire viewport */}
+        <div className="fixed inset-0 z-0 overflow-hidden">
             {/* Mobile background */}
             <div
               className="absolute inset-0 opacity-20 bg-contain bg-no-repeat bg-top md:hidden"
@@ -27,10 +25,12 @@ export default function Home() {
                 backgroundImage: 'url(/assets/images/bndy_landing_banner.jpg)',
               }}
             />
-            {/* Gradient fade from transparent to solid */}
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-slate-900" />
-          </div>
+          {/* Gradient fade from transparent to solid */}
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-slate-900" />
+        </div>
 
+        {/* Content - above background */}
+        <div className="relative z-10">
           <AppHeader />
 
           {/* Hero Section */}
