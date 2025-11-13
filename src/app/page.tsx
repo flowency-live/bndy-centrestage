@@ -9,8 +9,8 @@ export default function Home() {
   return (
     <ThemeProvider>
       <main className="min-h-screen flex flex-col bg-slate-900">
-        {/* Background Image with gradient fade - covers entire viewport */}
-        <div className="fixed inset-0 z-0 overflow-hidden">
+        {/* Background Image with gradient fade - fixed but limited height */}
+        <div className="fixed top-0 left-0 right-0 h-[80vh] z-0 overflow-hidden pointer-events-none">
             {/* Mobile background */}
             <div
               className="absolute inset-0 opacity-20 bg-contain bg-no-repeat bg-top md:hidden"
@@ -67,9 +67,10 @@ export default function Home() {
             </p>
           </div>
         </section>
+        </div>
 
-          {/* What We Offer Section */}
-          <section className="relative py-16 px-4 z-10">
+        {/* What We Offer Section */}
+        <section className="relative py-16 px-4">
             <div className="max-w-6xl mx-auto">
             <h2 className="text-3xl font-bold text-center mb-12 text-white">
               What We Offer
@@ -77,7 +78,7 @@ export default function Home() {
 
             <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
               {/* bndy.Live */}
-              <div className="bg-slate-800 p-8 rounded-xl border border-slate-700">
+              <div className="bg-slate-800/60 backdrop-blur-sm p-8 rounded-xl border border-slate-700">
                 <div className="flex items-center mb-6">
                   <div className="w-12 h-12 rounded-lg bg-orange-500/20 flex items-center justify-center mr-4">
                     <MapPin className="w-6 h-6 text-orange-500" />
@@ -116,7 +117,7 @@ export default function Home() {
               </div>
 
               {/* bndy.App */}
-              <div className="bg-slate-800 p-8 rounded-xl border border-slate-700">
+              <div className="bg-slate-800/60 backdrop-blur-sm p-8 rounded-xl border border-slate-700">
                 <div className="flex items-center mb-6">
                   <div className="w-12 h-12 rounded-lg bg-cyan-500/20 flex items-center justify-center mr-4">
                     <Calendar className="w-6 h-6 text-cyan-500" />
@@ -155,16 +156,15 @@ export default function Home() {
               </div>
             </div>
           </div>
-          </section>
-        </div>
+        </section>
 
         {/* Community Section */}
-        <section className="py-16 px-4 bg-slate-900">
+        <section className="relative z-10 py-16 px-4">
           <div className="max-w-5xl mx-auto text-center">
             <h2 className="text-3xl font-bold mb-12 text-white">A Community-Driven Platform</h2>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <div className="bg-slate-800 p-6 rounded-xl border border-slate-700">
+              <div className="bg-slate-800/20 backdrop-blur-sm p-6 rounded-xl border border-slate-700">
                 <div className="w-12 h-12 rounded-full mx-auto bg-orange-500 flex items-center justify-center mb-4">
                   <MapPin className="w-6 h-6 text-white" />
                 </div>
@@ -174,7 +174,7 @@ export default function Home() {
                 </p>
               </div>
 
-              <div className="bg-slate-800 p-6 rounded-xl border border-slate-700">
+              <div className="bg-slate-800/20 backdrop-blur-sm p-6 rounded-xl border border-slate-700">
                 <div className="w-12 h-12 rounded-full mx-auto bg-orange-500 flex items-center justify-center mb-4">
                   <span className="text-white text-lg">⚡</span>
                 </div>
@@ -184,7 +184,7 @@ export default function Home() {
                 </p>
               </div>
 
-              <div className="bg-slate-800 p-6 rounded-xl border border-slate-700">
+              <div className="bg-slate-800/20 backdrop-blur-sm p-6 rounded-xl border border-slate-700">
                 <div className="w-12 h-12 rounded-full mx-auto bg-cyan-500 flex items-center justify-center mb-4">
                   <span className="text-white text-lg">👥</span>
                 </div>
@@ -198,7 +198,7 @@ export default function Home() {
         </section>
 
         {/* Call to Action */}
-        <section className="py-16 px-4 text-center bg-gradient-to-r from-orange-500 to-orange-600 text-white">
+        <section className="relative z-10 py-16 px-4 text-center bg-gradient-to-r from-orange-500 to-orange-600 text-white">
           <div className="max-w-4xl mx-auto">
             <h2 className="text-3xl font-bold mb-6 text-white">Ready to experience live music differently?</h2>
             <p className="text-xl text-white mb-8">Join thousands in our community discovering and supporting live music every day.</p>

@@ -21,7 +21,7 @@ export const FullFooter: React.FC<FooterProps> = ({
   ];
 
   return (
-    <footer className={`py-6 border-t border-slate-700 bg-slate-900 ${className}`}>
+    <footer className={`relative z-10 py-6 border-t border-slate-700 bg-slate-900 ${className}`}>
       <div className="max-w-6xl mx-auto px-4">
         {/* Main 4-column grid */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-6">
